@@ -1,0 +1,12 @@
+"./ADCSWTrigger.obj"
+"./CortexM.obj"
+"./I2C1.obj"
+"./Lab2.obj"
+"./LaunchPad.obj"
+"./PLL.obj"
+"./SSD1306.obj"
+"./Timer2A.obj"
+"./UART.obj"
+"./tm4c123gh6pm_startup_ccs.obj"
+"../tm4c123gh6pm.cmd"
+-llibc.a
