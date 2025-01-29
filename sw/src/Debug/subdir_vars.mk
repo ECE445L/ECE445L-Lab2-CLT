@@ -9,15 +9,15 @@ CMD_SRCS += \
 ../tm4c123gh6pm.cmd 
 
 C_SRCS += \
-F:/Dropbox/EE345L\ Class/EE445LTeachingMaterials/0000_Fall_2024/0000_Fall_2024_Lab/inc/ADCSWTrigger.c \
-F:/Dropbox/EE345L\ Class/EE445LTeachingMaterials/0000_Fall_2024/0000_Fall_2024_Lab/inc/CortexM.c \
-F:/Dropbox/EE345L\ Class/EE445LTeachingMaterials/0000_Fall_2024/0000_Fall_2024_Lab/inc/I2C1.c \
+F:/Dropbox/EE345L\ Class/EE445LTeachingMaterials/000000_COMMON_WEB_FILES/LabStarterFiles/inc/ADCSWTrigger.c \
+F:/Dropbox/EE345L\ Class/EE445LTeachingMaterials/000000_COMMON_WEB_FILES/LabStarterFiles/inc/CortexM.c \
+F:/Dropbox/EE345L\ Class/EE445LTeachingMaterials/000000_COMMON_WEB_FILES/LabStarterFiles/inc/I2C1.c \
 ../Lab2.c \
-F:/Dropbox/EE345L\ Class/EE445LTeachingMaterials/0000_Fall_2024/0000_Fall_2024_Lab/inc/LaunchPad.c \
-F:/Dropbox/EE345L\ Class/EE445LTeachingMaterials/0000_Fall_2024/0000_Fall_2024_Lab/inc/PLL.c \
-F:/Dropbox/EE345L\ Class/EE445LTeachingMaterials/0000_Fall_2024/0000_Fall_2024_Lab/inc/SSD1306.c \
-F:/Dropbox/EE345L\ Class/EE445LTeachingMaterials/0000_Fall_2024/0000_Fall_2024_Lab/inc/Timer2A.c \
-F:/Dropbox/EE345L\ Class/EE445LTeachingMaterials/0000_Fall_2024/0000_Fall_2024_Lab/inc/UART.c \
+F:/Dropbox/EE345L\ Class/EE445LTeachingMaterials/000000_COMMON_WEB_FILES/LabStarterFiles/inc/LaunchPad.c \
+F:/Dropbox/EE345L\ Class/EE445LTeachingMaterials/000000_COMMON_WEB_FILES/LabStarterFiles/inc/PLL.c \
+F:/Dropbox/EE345L\ Class/EE445LTeachingMaterials/000000_COMMON_WEB_FILES/LabStarterFiles/inc/SSD1306.c \
+F:/Dropbox/EE345L\ Class/EE445LTeachingMaterials/000000_COMMON_WEB_FILES/LabStarterFiles/inc/Timer2A.c \
+F:/Dropbox/EE345L\ Class/EE445LTeachingMaterials/000000_COMMON_WEB_FILES/LabStarterFiles/inc/UART.c \
 ../tm4c123gh6pm_startup_ccs.c 
 
 C_DEPS += \
@@ -69,15 +69,15 @@ C_DEPS__QUOTED += \
 "tm4c123gh6pm_startup_ccs.d" 
 
 C_SRCS__QUOTED += \
-"F:/Dropbox/EE345L Class/EE445LTeachingMaterials/0000_Fall_2024/0000_Fall_2024_Lab/inc/ADCSWTrigger.c" \
-"F:/Dropbox/EE345L Class/EE445LTeachingMaterials/0000_Fall_2024/0000_Fall_2024_Lab/inc/CortexM.c" \
-"F:/Dropbox/EE345L Class/EE445LTeachingMaterials/0000_Fall_2024/0000_Fall_2024_Lab/inc/I2C1.c" \
+"F:/Dropbox/EE345L Class/EE445LTeachingMaterials/000000_COMMON_WEB_FILES/LabStarterFiles/inc/ADCSWTrigger.c" \
+"F:/Dropbox/EE345L Class/EE445LTeachingMaterials/000000_COMMON_WEB_FILES/LabStarterFiles/inc/CortexM.c" \
+"F:/Dropbox/EE345L Class/EE445LTeachingMaterials/000000_COMMON_WEB_FILES/LabStarterFiles/inc/I2C1.c" \
 "../Lab2.c" \
-"F:/Dropbox/EE345L Class/EE445LTeachingMaterials/0000_Fall_2024/0000_Fall_2024_Lab/inc/LaunchPad.c" \
-"F:/Dropbox/EE345L Class/EE445LTeachingMaterials/0000_Fall_2024/0000_Fall_2024_Lab/inc/PLL.c" \
-"F:/Dropbox/EE345L Class/EE445LTeachingMaterials/0000_Fall_2024/0000_Fall_2024_Lab/inc/SSD1306.c" \
-"F:/Dropbox/EE345L Class/EE445LTeachingMaterials/0000_Fall_2024/0000_Fall_2024_Lab/inc/Timer2A.c" \
-"F:/Dropbox/EE345L Class/EE445LTeachingMaterials/0000_Fall_2024/0000_Fall_2024_Lab/inc/UART.c" \
+"F:/Dropbox/EE345L Class/EE445LTeachingMaterials/000000_COMMON_WEB_FILES/LabStarterFiles/inc/LaunchPad.c" \
+"F:/Dropbox/EE345L Class/EE445LTeachingMaterials/000000_COMMON_WEB_FILES/LabStarterFiles/inc/PLL.c" \
+"F:/Dropbox/EE345L Class/EE445LTeachingMaterials/000000_COMMON_WEB_FILES/LabStarterFiles/inc/SSD1306.c" \
+"F:/Dropbox/EE345L Class/EE445LTeachingMaterials/000000_COMMON_WEB_FILES/LabStarterFiles/inc/Timer2A.c" \
+"F:/Dropbox/EE345L Class/EE445LTeachingMaterials/000000_COMMON_WEB_FILES/LabStarterFiles/inc/UART.c" \
 "../tm4c123gh6pm_startup_ccs.c" 
 
 

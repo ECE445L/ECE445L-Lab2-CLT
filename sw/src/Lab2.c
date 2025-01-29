@@ -4,7 +4,7 @@
 // Runs on TM4C123
 // 
 // Jonathan Valvano
-// July 9, 2024
+// December 27, 2024
 //
 //  Three possible ADC inputs are PE4, PE5, or PE1.      
 // ----------------------------------------------------------------------
@@ -18,6 +18,9 @@
 #include "../inc/CortexM.h"
 #include "../inc/UART.h"
 #include "../inc/SSD1306.h"
+// bit-specific addresses for PC7 and PC6
+#define PC7   (*((volatile uint32_t *)0x40006200))
+#define PC6   (*((volatile uint32_t *)0x40006100))
 void ADC_Init(void){
 // write this
 
@@ -140,6 +143,7 @@ void Timer1_Init(void){
 //#define IRmax 2552
 //#define Dmax 400
 // long range IR GP2Y0A21YK0F
+// ***Calibrate your sensor, DO NOT USE THESE VALUES***
 #define A 293152
 #define B -214
 #define IRmax 900
@@ -154,10 +158,51 @@ int32_t InvokesDivide=10000;
 // Otherwise, InvokesDivide has no functional purpose
 
 // ----------------------------------------------------------------------
+// -------------------    MAIN without SSD1306  ----------------------------------------
+// ----------------------------------------------------------------------
+// Use debugger to observe results
+// PMF output to serial port
+int main(void){ 
+  DisableInterrupts(); 
+  PLL_Init(Bus80MHz);                // 80 MHz
+  LaunchPad_Init();
+  Timer1_Init();
+  PortC_Init();
+  UART_Init();  // to print the PMF
+  Timer2A_Init(&RealTimeTask,80000,1); // 1kHz, priority=1
+  ADC_Init();           // sample PE5
+  EnableInterrupts(); 
+  while(1){
+    ADC0_SAC_R = 0; // this will hard fault if ADC_Init is not complete
+    for(Averaging = 1; Averaging<=64; ){
+      Num = 0;  // empty array
+      while(Num<1000){
+        InvokesDivide = (InvokesDivide*12345678)/12345; // this line should have caused jitter
+        GPIO_PORTC_DATA_R ^= 0x40;    // toggles PC6 when running in main, this line has a critical section
+      }
+      CalculateJitter();
+      CalculateSNR();
+      CreatePMF();
+      Distance = IR_Convert(Signal);
+
+      if(PF4==0x00){                 // change SAR size on button push
+        Clock_Delay1ms(10);          // debounce
+        while(PF4==0x00){
+          Clock_Delay1ms(10);
+        }
+        Averaging = Averaging<<1;
+        ADC0_SAC_R = ADC0_SAC_R+1;
+
+      } 
+    }
+  }
+}
+
+// ----------------------------------------------------------------------
 // -------------------    MAIN with SSD1306  ----------------------------------------
 // ----------------------------------------------------------------------
 // PMF output to serial port
-int main(void){ 
+int main1(void){ 
   DisableInterrupts(); 
   PLL_Init(Bus80MHz);                // 80 MHz
   LaunchPad_Init();
@@ -187,7 +232,7 @@ int main(void){
       Num = 0;  // empty array
       while(Num<1000){
         InvokesDivide = (InvokesDivide*12345678)/12345; // this line should have caused jitter
-        GPIO_PORTC_DATA_R ^= 0x40;    // toggles PC6 when running in main
+        GPIO_PORTC_DATA_R ^= 0x40;    // toggles PC6 when running in main, this line has a critical section
       }
       CalculateJitter();
       CalculateSNR();
@@ -212,46 +257,3 @@ int main(void){
     }
   }
 }
-
-
-// ----------------------------------------------------------------------
-// -------------------    MAIN without SSD1306  ----------------------------------------
-// ----------------------------------------------------------------------
-// Use debugger to observe results
-// PMF output to serial port
-int main1(void){ 
-  DisableInterrupts(); 
-  PLL_Init(Bus80MHz);                // 80 MHz
-  LaunchPad_Init();
-  Timer1_Init();
-  PortC_Init();
-  UART_Init();  // to print the PMF
-  Timer2A_Init(&RealTimeTask,80000,1); // 1kHz, priority=1
-  ADC_Init();           // sample PE5
-  EnableInterrupts(); 
-  while(1){
-    ADC0_SAC_R = 0; 
-    for(Averaging = 1; Averaging<=64; ){
-      Num = 0;  // empty array
-      while(Num<1000){
-        InvokesDivide = (InvokesDivide*12345678)/12345; // this line should have caused jitter
-        GPIO_PORTC_DATA_R ^= 0x40;    // toggles PC6 when running in main
-      }
-      CalculateJitter();
-      CalculateSNR();
-      CreatePMF();
-      Distance = IR_Convert(Signal);
-
-      if(PF4==0x00){                 // change SAR size on button push
-        Clock_Delay1ms(10);          // debounce
-        while(PF4==0x00){
-          Clock_Delay1ms(10);
-        }
-        Averaging = Averaging<<1;
-        ADC0_SAC_R = ADC0_SAC_R+1;
-
-      } 
-    }
-  }
-}
-
